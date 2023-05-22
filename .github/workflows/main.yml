@@ -21,7 +21,7 @@ jobs:
         uses: nuget/setup-nuget@v1
   
       - name: Nuget Restore
-        run: nuget restore $Env:GITHUB_WORKSPACE\SharpHound3\SharpHound3.sln && nuget restore $Env:GITHUB_WORKSPACE\Certify\Certify.sln && nuget restore $Env:GITHUB_WORKSPACE\Rubeus\Rubeus.sln && nuget restore $Env:GITHUB_WORKSPACE\SafetyKatz\SafetyKatz.sln && nuget restore $Env:GITHUB_WORKSPACE\Seatbelt\Seatbelt.sln && nuget restore $Env:GITHUB_WORKSPACE\SharpDPAPI\SharpDPAPI.sln && nuget restore $Env:GITHUB_WORKSPACE\SharpMove\SharpMove\SharpMove.sln && nuget restore $Env:GITHUB_WORKSPACE\SharpRDP\SharpRDP\SharpRDP.sln && nuget restore $Env:GITHUB_WORKSPACE\SharpStay\SharpStay\SharpStay.sln && nuget restore $Env:GITHUB_WORKSPACE\SharpUp\SharpUp.sln && nuget restore $Env:GITHUB_WORKSPACE\SharpWMI\SharpWMI.sln && nuget restore $Env:GITHUB_WORKSPACE\ADSearch\ADSearch.sln && nuget restore $Env:GITHUB_WORKSPACE\PortBender\src\PortBender\PortBender.sln && nuget restore $Env:GITHUB_WORKSPACE\Whisker\Whisker.sln && nuget restore $Env:GITHUB_WORKSPACE\SharpSystemTriggers\SharpSystemTriggers.sln && nuget restore $Env:GITHUB_WORKSPACE\SharpGPOAbuse\SharpGPOAbuse.sln
+        run: nuget restore $Env:GITHUB_WORKSPACE\SharpHound3\SharpHound3.sln && nuget restore $Env:GITHUB_WORKSPACE\Certify\Certify.sln && nuget restore $Env:GITHUB_WORKSPACE\Rubeus\Rubeus.sln && nuget restore $Env:GITHUB_WORKSPACE\SafetyKatz\SafetyKatz.sln && nuget restore $Env:GITHUB_WORKSPACE\Seatbelt\Seatbelt.sln && nuget restore $Env:GITHUB_WORKSPACE\SharpDPAPI\SharpDPAPI.sln && nuget restore $Env:GITHUB_WORKSPACE\SharpMove\SharpMove\SharpMove.sln && nuget restore $Env:GITHUB_WORKSPACE\SharpRDP\SharpRDP\SharpRDP.sln && nuget restore $Env:GITHUB_WORKSPACE\SharpStay\SharpStay\SharpStay.sln && nuget restore $Env:GITHUB_WORKSPACE\SharpUp\SharpUp.sln && nuget restore $Env:GITHUB_WORKSPACE\SharpWMI\SharpWMI.sln && nuget restore $Env:GITHUB_WORKSPACE\ADSearch\ADSearch.sln && nuget restore $Env:GITHUB_WORKSPACE\PortBender\src\PortBender\PortBender.sln && nuget restore $Env:GITHUB_WORKSPACE\Whisker\Whisker.sln && nuget restore $Env:GITHUB_WORKSPACE\SharpSystemTriggers\SharpSystemTriggers.sln && nuget restore $Env:GITHUB_WORKSPACE\SharpGPOAbuse\SharpGPOAbuse.sln && nuget restore $Env:GITHUB_WORKSPACE\SharPersist\SharPersist.sln
       
           
       - name: Build Tools
@@ -45,6 +45,7 @@ jobs:
           .\MSBuild.exe $Env:GITHUB_WORKSPACE\SharpSystemTriggers\SharpDcomTrigger\SharpDcomTrigger.csproj /property:Configuration=Release
           .\MSBuild.exe $Env:GITHUB_WORKSPACE\SharpSystemTriggers\SharpSpoolTrigger\SharpSpoolTrigger.csproj /property:Configuration=Release
           .\MSBuild.exe $Env:GITHUB_WORKSPACE\SharpGPOAbuse\SharpGPOAbuse\SharpGPOAbuse.csproj /property:Configuration=Release
+          .\MSBuild.exe $Env:GITHUB_WORKSPACE\SharPersist\SharPersist\SharPersist.csproj /property:Configuration=Release
       
       - uses: actions/upload-artifact@master
         with:
@@ -141,4 +142,7 @@ jobs:
           name: SharpGPOAbuse
           path: SharpGPOAbuse\SharpGPOAbuse\bin\Release\SharpGPOAbuse.exe
 
-
+      - uses: actions/upload-artifact@master
+        with:
+          name: SharPersist
+          path: SharPersist\SharPersist\bin\Release\SharPersist.exe

@@ -20,6 +20,7 @@
 - [X] [SharpSystemTriggers](https://github.com/cube0x0/SharpSystemTriggers)
 - [X] [SharpGPOAbuse](https://github.com/FSecureLABS/SharpGPOAbuse)
 - [X] [SQLRecon](https://github.com/skahwah/SQLRecon)
+- [X] [SharPersist](https://github.com/mandiant/SharPersist)
 
 📝 TODO
 
