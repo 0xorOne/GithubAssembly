@@ -24,7 +24,7 @@ jobs:
         run: nuget restore $Env:GITHUB_WORKSPACE\SharpHound3\SharpHound3.sln && nuget restore $Env:GITHUB_WORKSPACE\Certify\Certify.sln && nuget restore $Env:GITHUB_WORKSPACE\Rubeus\Rubeus.sln && nuget restore $Env:GITHUB_WORKSPACE\SafetyKatz\SafetyKatz.sln && nuget restore $Env:GITHUB_WORKSPACE\Seatbelt\Seatbelt.sln && nuget restore $Env:GITHUB_WORKSPACE\SharpDPAPI\SharpDPAPI.sln && nuget restore $Env:GITHUB_WORKSPACE\SharpMove\SharpMove\SharpMove.sln && nuget restore $Env:GITHUB_WORKSPACE\SharpRDP\SharpRDP\SharpRDP.sln && nuget restore $Env:GITHUB_WORKSPACE\SharpStay\SharpStay\SharpStay.sln && nuget restore $Env:GITHUB_WORKSPACE\SharpUp\SharpUp.sln && nuget restore $Env:GITHUB_WORKSPACE\SharpWMI\SharpWMI.sln && nuget restore $Env:GITHUB_WORKSPACE\ADSearch\ADSearch.sln && nuget restore $Env:GITHUB_WORKSPACE\PortBender\src\PortBender\PortBender.sln && nuget restore $Env:GITHUB_WORKSPACE\Whisker\Whisker.sln && nuget restore $Env:GITHUB_WORKSPACE\SharpSystemTriggers\SharpSystemTriggers.sln && nuget restore $Env:GITHUB_WORKSPACE\SharpGPOAbuse\SharpGPOAbuse.sln && nuget restore $Env:GITHUB_WORKSPACE\SharPersist\SharPersist.sln
       
       - name: Install dependencies
-        run: Install-Package Costura.Fody && Install-Package TaskScheduler
+        run: Install-Package Costura.Fody -AllowClobber && Install-Package TaskScheduler -AllowClobber
           
       - name: Build Tools
         run: |
