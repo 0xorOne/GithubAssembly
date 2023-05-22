@@ -1,0 +1,144 @@
+name: Build
+
+on: [push]
+jobs:
+  build:
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@v2
+      
+      - uses: actions/checkout@v2
+      - name: Checkout submodules
+        shell: bash
+        run: |
+          # If your submodules are configured to use SSH instead of HTTPS please uncomment the following line
+          # git config --global url."https://github.com/".insteadOf "git@github.com:"
+          auth_header="$(git config --local --get http.https://github.com/.extraheader)"
+          git submodule sync --recursive
+          git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive --depth=1
+
+      - name: Setup Nuget.exe
+        uses: nuget/setup-nuget@v1
+  
+      - name: Nuget Restore
+        run: nuget restore $Env:GITHUB_WORKSPACE\SharpHound3\SharpHound3.sln && nuget restore $Env:GITHUB_WORKSPACE\Certify\Certify.sln && nuget restore $Env:GITHUB_WORKSPACE\Rubeus\Rubeus.sln && nuget restore $Env:GITHUB_WORKSPACE\SafetyKatz\SafetyKatz.sln && nuget restore $Env:GITHUB_WORKSPACE\Seatbelt\Seatbelt.sln && nuget restore $Env:GITHUB_WORKSPACE\SharpDPAPI\SharpDPAPI.sln && nuget restore $Env:GITHUB_WORKSPACE\SharpMove\SharpMove\SharpMove.sln && nuget restore $Env:GITHUB_WORKSPACE\SharpRDP\SharpRDP\SharpRDP.sln && nuget restore $Env:GITHUB_WORKSPACE\SharpStay\SharpStay\SharpStay.sln && nuget restore $Env:GITHUB_WORKSPACE\SharpUp\SharpUp.sln && nuget restore $Env:GITHUB_WORKSPACE\SharpWMI\SharpWMI.sln && nuget restore $Env:GITHUB_WORKSPACE\ADSearch\ADSearch.sln && nuget restore $Env:GITHUB_WORKSPACE\PortBender\src\PortBender\PortBender.sln && nuget restore $Env:GITHUB_WORKSPACE\Whisker\Whisker.sln && nuget restore $Env:GITHUB_WORKSPACE\SharpSystemTriggers\SharpSystemTriggers.sln && nuget restore $Env:GITHUB_WORKSPACE\SharpGPOAbuse\SharpGPOAbuse.sln
+      
+          
+      - name: Build Tools
+        run: |
+          cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\"
+          .\MSBuild.exe $Env:GITHUB_WORKSPACE\Certify\Certify\Certify.csproj /property:Configuration=Release
+          .\MSBuild.exe $Env:GITHUB_WORKSPACE\Rubeus\Rubeus\Rubeus.csproj /property:Configuration=Release
+          .\MSBuild.exe $Env:GITHUB_WORKSPACE\SafetyKatz\SafetyKatz\SafetyKatz.csproj /property:Configuration=Release
+          .\MSBuild.exe $Env:GITHUB_WORKSPACE\Seatbelt\Seatbelt\Seatbelt.csproj /property:Configuration=Release
+          .\MSBuild.exe $Env:GITHUB_WORKSPACE\SharpDPAPI\SharpDPAPI\SharpDPAPI.csproj /property:Configuration=Release
+          .\MSBuild.exe $Env:GITHUB_WORKSPACE\SharpMove\SharpMove\SharpMove\SharpMove.csproj /property:Configuration=Release
+          .\MSBuild.exe $Env:GITHUB_WORKSPACE\SharpRDP\SharpRDP\SharpRDP\SharpRDP.csproj /property:Configuration=Release
+          .\MSBuild.exe $Env:GITHUB_WORKSPACE\SharpStay\SharpStay\SharpStay\SharpStay.csproj /property:Configuration=Release
+          .\MSBuild.exe $Env:GITHUB_WORKSPACE\SharpUp\SharpUp\SharpUp.csproj /property:Configuration=Release
+          .\MSBuild.exe $Env:GITHUB_WORKSPACE\SharpWMI\SharpWMI\SharpWMI.csproj /property:Configuration=Release
+          .\MSBuild.exe $Env:GITHUB_WORKSPACE\ADSearch\ADSearch\ADSearch.csproj /property:Configuration=Release
+          .\MSBuild.exe $Env:GITHUB_WORKSPACE\PortBender\PortBender\src\PortBender\PortBender\PortBender.csproj /property:Configuration=Release
+          .\MSBuild.exe $Env:GITHUB_WORKSPACE\Whisker\Whisker\Whisker.csproj /property:Configuration=Release
+          .\MSBuild.exe $Env:GITHUB_WORKSPACE\SharpSystemTriggers\Midl2Bytes\Midl2Bytes.csproj /property:Configuration=Release
+          .\MSBuild.exe $Env:GITHUB_WORKSPACE\SharpSystemTriggers\SharpEfsTrigger\SharpEfsTrigger.csproj /property:Configuration=Release
+          .\MSBuild.exe $Env:GITHUB_WORKSPACE\SharpSystemTriggers\SharpDcomTrigger\SharpDcomTrigger.csproj /property:Configuration=Release
+          .\MSBuild.exe $Env:GITHUB_WORKSPACE\SharpSystemTriggers\SharpSpoolTrigger\SharpSpoolTrigger.csproj /property:Configuration=Release
+          .\MSBuild.exe $Env:GITHUB_WORKSPACE\SharpGPOAbuse\SharpGPOAbuse\SharpGPOAbuse.csproj /property:Configuration=Release
+      
+      - uses: actions/upload-artifact@master
+        with:
+          name: SharpHound3
+          path: SharpHound3\SharpHound3\bin\Release\SharpHound.exe
+
+      - uses: actions/upload-artifact@master
+        with:
+          name: Certify
+          path: Certify\Certify\bin\Release\Certify.exe
+
+      - uses: actions/upload-artifact@master
+        with:
+          name: Rubeus
+          path: Rubeus\Rubeus\bin\Release\Rubeus.exe
+
+      - uses: actions/upload-artifact@master
+        with:
+          name: SafetyKatz
+          path: SafetyKatz\SafetyKatz\bin\Release\SafetyKatz.exe
+
+      - uses: actions/upload-artifact@master
+        with:
+          name: Seatbelt
+          path: Seatbelt\Seatbelt\bin\Release\Seatbelt.exe
+
+      - uses: actions/upload-artifact@master
+        with:
+          name: SharpDPAPI
+          path: SharpDPAPI\SharpDPAPI\bin\Release\SharpDPAPI.exe
+
+      - uses: actions/upload-artifact@master
+        with:
+          name: SharpMove
+          path: SharpMove\SharpMove\SharpMove\bin\Release\SharpMove.exe
+
+      - uses: actions/upload-artifact@master
+        with:
+          name: SharpRDP
+          path: SharpRDP\SharpRDP\SharpRDP\bin\Release\SharpRDP.exe
+
+      - uses: actions/upload-artifact@master
+        with:
+          name: SharpStay
+          path: SharpStay\SharpStay\SharpStay\bin\Release\SharpStay.exe
+
+      - uses: actions/upload-artifact@master
+        with:
+          name: SharpUp
+          path: SharpUp\SharpUp\bin\Release\SharpUp.exe
+
+      - uses: actions/upload-artifact@master
+        with:
+          name: SharpWMI
+          path: SharpWMI\SharpWMI\bin\Release\SharpWMI.exe
+
+      - uses: actions/upload-artifact@master
+        with:
+          name: ADSearch
+          path: ADSearch\ADSearch\bin\Release\ADSearch.exe
+      
+      - uses: actions/upload-artifact@master
+        with:
+          name: PortBender
+          path: PortBender\PortBender\src\PortBender\bin\Release\PortBender.exe
+
+      - uses: actions/upload-artifact@master
+        with:
+          name: Whisker
+          path: Whisker\Whisker\bin\Release\Whisker.exe
+
+      - uses: actions/upload-artifact@master
+        with:
+          name: Midl2Bytes
+          path: SharpSystemTriggers\Midl2Bytes\bin\Release\Midl2Bytes.exe
+      
+      - uses: actions/upload-artifact@master
+        with:
+          name: SharpDcomTrigger
+          path: SharpSystemTriggers\SharpDcomTrigger\bin\Release\SharpDcomTrigger.exe
+      
+      - uses: actions/upload-artifact@master
+        with:
+          name: SharpEfsTrigger
+          path: SharpSystemTriggers\SharpEfsTrigger\bin\Release\SharpEfsTrigger.exe
+      
+      - uses: actions/upload-artifact@master
+        with:
+          name: SharpSpoolTrigger
+          path: SharpSystemTriggers\SharpSpoolTrigger\bin\Release\SharpSpoolTrigger.exe
+      
+      - uses: actions/upload-artifact@master
+        with:
+          name: SharpGPOAbuse
+          path: SharpGPOAbuse\SharpGPOAbuse\bin\Release\SharpGPOAbuse.exe
+
+

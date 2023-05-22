@@ -1,0 +1,57 @@
+[submodule "SharpHound3"]
+	path = SharpHound3
+	url = https://github.com/BloodHoundAD/SharpHound3.git
+[submodule "Rubeus"]
+	path = Rubeus
+	url = https://github.com/GhostPack/Rubeus.git
+[submodule "Seatbelt"]
+	path = Seatbelt
+	url = https://github.com/GhostPack/Seatbelt.git
+[submodule "SafetyKatz"]
+	path = SafetyKatz
+	url = https://github.com/GhostPack/SafetyKatz.git
+[submodule "Certify"]
+	path = Certify
+	url = https://github.com/GhostPack/Certify.git
+[submodule "SharpUp"]
+	path = SharpUp
+	url = https://github.com/GhostPack/SharpUp.git
+[submodule "SharpDPAPI"]
+	path = SharpDPAPI
+	url = https://github.com/GhostPack/SharpDPAPI.git
+[submodule "SharpWMI"]
+	path = SharpWMI
+	url = https://github.com/GhostPack/SharpWMI.git
+[submodule "SharpStay"]
+	path = SharpStay
+	url = https://github.com/0xthirteen/SharpStay.git
+[submodule "SharpRDP"]
+	path = SharpRDP
+	url = https://github.com/0xthirteen/SharpRDP.git
+[submodule "SharpMove"]
+	path = SharpMove
+	url = https://github.com/0xthirteen/SharpMove.git
+[submodule "ADSearch"]
+	path = ADSearch
+	url = https://github.com/tomcarver16/ADSearch.git
+[submodule "PortBender"]
+	path = PortBender
+	url = https://github.com/praetorian-inc/PortBender.git
+[submodule "Whisker"]
+	path = Whisker
+	url = https://github.com/eladshamir/Whisker.git
+[submodule "SharpSystemTriggers"]
+	path = SharpSystemTriggers
+	url = https://github.com/cube0x0/SharpSystemTriggers.git
+[submodule "SharpGPOAbuse"]
+	path = SharpGPOAbuse
+	url = https://github.com/FSecureLABS/SharpGPOAbuse.git
+[submodule "yetAnotherObfuscator"]
+	path = yetAnotherObfuscator
+	url = https://github.com/0xb11a1/yetAnotherObfuscator.git
+[submodule "SQLRecon"]
+	path = SQLRecon
+	url = https://github.com/skahwah/SQLRecon.git
+[submodule "SharPersist"]
+	path = SharPersist
+	url = https://github.com/mandiant/SharPersist.git
